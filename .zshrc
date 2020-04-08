@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/mmomm/.oh-my-zsh"
@@ -28,6 +28,35 @@ ZSH_THEME="candy"
 
 # cdなしでディレクトリ移動
 setopt auto_cd
+# コマンドのスペルチェックをする
+setopt correct
+# コマンドライン全てのスペルチェックをする
+setopt correct_all
+# カッコの対応などを自動的に補完する
+setopt auto_param_keys
+# ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
+setopt auto_param_slash
+# 補完キー（Tab,  Ctrl+I) を連打するだけで順に補完候補を自動で補完する
+setopt auto_menu
+# 色付きで補完する
+zstyle ':completion:*' list-colors di=34 fi=0
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# beepを鳴らさないようにする
+setopt nolistbeep
+# 余分な空白は詰める
+setopt hist_reduce_blanks
+# ctrl-w, ctrl-bキーで単語移動
+bindkey "^W" forward-word
+bindkey "^B" backward-word
+# ^でcd ..する
+function cdup() {
+echo
+cd ..
+zle reset-prompt
+}
+zle -N cdup
+# bindkey '\^' cdup
+
 
 # Uncomment the following line to automatically update without prompting.
 # DISABLE_UPDATE_PROMPT="true"
