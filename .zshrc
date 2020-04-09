@@ -3,7 +3,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/mmomm/.oh-my-zsh"
-
+#日本語を使用
+export LANG=ja_JP.UTF-8
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -26,6 +27,38 @@ ZSH_THEME="candy"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+#alias一覧
+# historyに日付を表示
+alias h='fc -lt '%F %T' 1'
+alias la='ls -a'
+alias ll='ls -l'
+alias sz='source ~/dotfiles/.zshrc'
+alias h='cd ~/desktop'
+alias d='docker'
+alias dc='docker-compose'
+alias cl='clear'
+alias ..='cd ..'
+alias ...='cd ../../'
+alias ....='cd ../../..'
+alias g='git'
+alias ga='git add'
+alias gi='git init'
+alias gd='git diff'
+alias gs='git status'
+alias gp='git push'
+alias gb='git branch'
+alias gst='git status'
+alias gco='git checkout'
+alias gf='git fetch'
+alias gc='git commit'
+alias gfirst='git remote add origin'
+alias m='mkdir'
+alias path='echo $PATH'
+alias w='which'
+
+
+# プロンプトを2行で表示、時刻を表示
+PROMPT="%(?.%{${fg[green]}%}.%{${fg[red]}%})%n${reset_color}@${fg[blue]}%m${reset_color}(%*%) %~%# "
 # cdなしでディレクトリ移動
 setopt auto_cd
 # コマンドのスペルチェックをする
@@ -48,13 +81,20 @@ setopt hist_reduce_blanks
 # ctrl-w, ctrl-bキーで単語移動
 bindkey "^W" forward-word
 bindkey "^B" backward-word
-# ^でcd ..する
-function cdup() {
-echo
-cd ..
-zle reset-prompt
+# cdの後にlsを実行
+chpwd() { ls -ltr --color=auto }
+
+# mkdirとcdを同時実行
+function mkcd() {
+  if [[ -d $1 ]]; then
+    echo "$1 already exists!"
+    cd $1
+  else
+    mkdir -p $1 && cd $1
+  fi
 }
-zle -N cdup
+
+
 # bindkey '\^' cdup
 
 
@@ -132,3 +172,64 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
+function is_osx() { [[ $OSTYPE == darwin* ]]; }
+function is_screen_running() { [ ! -z "$STY" ]; }
+function is_tmux_runnning() { [ ! -z "$TMUX" ]; }
+function is_screen_or_tmux_running() { is_screen_running || is_tmux_runnning; }
+function shell_has_started_interactively() { [ ! -z "$PS1" ]; }
+function is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
+
+function tmux_automatically_attach_session()
+{
+    if is_screen_or_tmux_running; then
+        ! is_exists 'tmux' && return 1
+
+        if is_tmux_runnning; then
+            echo "${fg_bold[red]} _____ __  __ _   ___  __ ${reset_color}"
+            echo "${fg_bold[red]}|_   _|  \/  | | | \ \/ / ${reset_color}"
+            echo "${fg_bold[red]}  | | | |\/| | | | |\  /  ${reset_color}"
+            echo "${fg_bold[red]}  | | | |  | | |_| |/  \  ${reset_color}"
+            echo "${fg_bold[red]}  |_| |_|  |_|\___//_/\_\ ${reset_color}"
+        elif is_screen_running; then
+            echo "This is on screen."
+        fi
+    else
+        if shell_has_started_interactively && ! is_ssh_running; then
+            if ! is_exists 'tmux'; then
+                echo 'Error: tmux command not found' 2>&1
+                return 1
+            fi
+
+            if tmux has-session >/dev/null 2>&1 && tmux list-sessions | grep -qE '.*]$'; then
+                # detached session exists
+                tmux list-sessions
+                echo -n "Tmux: attach? (y/N/num) "
+                read
+                if [[ "$REPLY" =~ ^[Yy]$ ]] || [[ "$REPLY" == '' ]]; then
+                    tmux attach-session
+                    if [ $? -eq 0 ]; then
+                        echo "$(tmux -V) attached session"
+                        return 0
+                    fi
+                elif [[ "$REPLY" =~ ^[0-9]+$ ]]; then
+                    tmux attach -t "$REPLY"
+                    if [ $? -eq 0 ]; then
+                        echo "$(tmux -V) attached session"
+                        return 0
+                    fi
+                fi
+            fi
+
+            if is_osx && is_exists 'reattach-to-user-namespace'; then
+                # on OS X force tmux's default command
+                # to spawn a shell in the user's namespace
+                tmux_config=$(cat $HOME/.tmux.conf <(echo 'set-option -g default-command "reattach-to-user-namespace -l $SHELL"'))
+                tmux -f <(echo "$tmux_config") new-session && echo "$(tmux -V) created new session supported OS X"
+            else
+                tmux new-session && echo "tmux created new session"
+            fi
+        fi
+    fi
+}
+tmux_automatically_attach_session
