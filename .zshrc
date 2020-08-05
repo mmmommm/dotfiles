@@ -1,14 +1,17 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="/usr/local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/mmomm/.oh-my-zsh"
 #日本語を使用
 export LANG=ja_JP.UTF-8
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+
+#environmental paths
+#.bashrcのやつをコピー
+export PATH=/Users/mmomm/.nodebrew/current/bin:/Users/mmomm/.rbenv/bin:/Users/mmomm/.rbenv/shims:/Users/mmomm/.rbenv/bin:/Users/mmomm/.rbenv/shims:/Users/mmomm/.rbenv/bin:/Users/mmomm/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/local/.npm-global/bin/:/Users/local/.npm-global/bin/:/Users/local/.npm-global/bin/:/Users/local/.npm-global/bin/:/Users/local/.npm-global/bin/:/Users/local/.npm-global/bin
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 ZSH_THEME="candy"
 
 # Set list of themes to pick from when loading at random
@@ -36,6 +39,7 @@ alias sz='source ~/dotfiles/.zshrc'
 alias h='cd ~/desktop'
 alias d='docker'
 alias dc='docker-compose'
+alias dopen='open /Applications/Docker.app'
 alias cl='clear'
 alias ..='cd ..'
 alias ...='cd ../../'
@@ -45,7 +49,7 @@ alias ga='git add'
 alias gi='git init'
 alias gd='git diff'
 alias gs='git status'
-alias gp='git push'
+alias gp='git push origin HEAD'
 alias gb='git branch'
 alias gst='git status'
 alias gco='git checkout'
@@ -55,6 +59,7 @@ alias gfirst='git remote add origin'
 alias m='mkdir'
 alias path='echo $PATH'
 alias w='which'
+alias serve='npm run serve'
 
 
 # プロンプトを2行で表示、時刻を表示
