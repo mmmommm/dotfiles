@@ -86,6 +86,11 @@ setopt hist_reduce_blanks
 # ctrl-w, ctrl-bキーで単語移動
 bindkey "^W" forward-word
 bindkey "^B" backward-word
+# 重複する履歴は古い方を削除
+  setopt hist_ignore_all_dups
+# 直前と同じコマンドラインはヒストリに記録しない
+  setopt hist_ignore_dups
+
 # cdの後にlsを実行
 chpwd() { ls -ltr --color=auto }
 
