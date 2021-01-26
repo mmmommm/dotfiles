@@ -52,6 +52,7 @@ alias gs='git status'
 alias gp='git push origin HEAD'
 alias gb='git branch'
 alias gst='git status'
+alias gsw='git switch'
 alias gco='git checkout'
 alias gf='git fetch'
 alias gc='git commit'
@@ -60,6 +61,7 @@ alias m='mkdir'
 alias path='echo $PATH'
 alias w='which'
 alias serve='npm run serve'
+alias mongodb='mongod --config /usr/local/etc/mongod.conf'
 
 
 # プロンプトを2行で表示、時刻を表示
