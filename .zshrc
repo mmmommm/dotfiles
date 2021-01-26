@@ -3,7 +3,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/mmomm/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 #日本語を使用
 export LANG=ja_JP.UTF-8
 
