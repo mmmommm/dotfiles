@@ -9,8 +9,23 @@ export LANG=ja_JP.UTF-8
 
 #environmental paths
 #.bashrcのやつをコピー
-export PATH=/Users/mmomm/.nodebrew/current/bin:/Users/mmomm/.rbenv/bin:/Users/mmomm/.rbenv/shims:/Users/mmomm/.rbenv/bin:/Users/mmomm/.rbenv/shims:/Users/mmomm/.rbenv/bin:/Users/mmomm/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/local/.npm-global/bin/:/Users/local/.npm-global/bin/:/Users/local/.npm-global/bin/:/Users/local/.npm-global/bin/:/Users/local/.npm-global/bin/:/Users/local/.npm-global/bin
+export PATH="/Users/mmomm/.nodebrew/current/bin:$PATH"
+export PATH="/Users/mmomm/.rbenv/bin:$PATH"
+export PATH="/Users/mmomm/.rbenv/shims:$PATH"
+export PATH="/Users/mmomm/.rbenv/bin:$PATH"
+export PATH="/Users/mmomm/.rbenv/shims:$PATH"
+export PATH="/Users/mmomm/.rbenv/bin:$PATH"
+export PATH="/Users/mmomm/.rbenv/shims:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+export PATH="/Users/local/.npm-global/bin/:$PATH"
+export PATH="/Users/local/.npm-global/bin/:$PATH"
+export PATH="/Users/local/.npm-global/bin/:$PATH"
+export PATH="/Users/local/.npm-global/bin/:$PATH"
+export PATH="/Users/local/.npm-global/bin/:$PATH"
+export PATH="/Users/local/.npm-global/bin/:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
 
 ZSH_THEME="candy"
 
@@ -20,21 +35,6 @@ path=(
 	/usr/local/bin(N-/)
 	$path
 )
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
 
 #alias一覧
 # historyに日付を表示
@@ -95,11 +95,11 @@ setopt hist_reduce_blanks
 bindkey "^W" forward-word
 bindkey "^B" backward-word
 # 重複する履歴は古い方を削除
-  setopt hist_ignore_all_dups
+setopt hist_ignore_all_dups
 # 直前と同じコマンドラインはヒストリに記録しない
-  setopt hist_ignore_dups
-# armとx86_64を切り替えられるように`switch-arch`
-  setopt magic_equal_subst
+setopt hist_ignore_dups
+# `switch-arch`でarm64とx86_64を切り替えられるように
+setopt magic_equal_subst
 
 # cdの後にlsを実行
 chpwd() { ls -ltr --color=auto }
