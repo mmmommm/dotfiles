@@ -98,7 +98,7 @@ bindkey "^B" backward-word
   setopt hist_ignore_all_dups
 # 直前と同じコマンドラインはヒストリに記録しない
   setopt hist_ignore_dups
-# armとx86_64を切り替えられるように
+# armとx86_64を切り替えられるように`switch-arch`
   setopt magic_equal_subst
 
 # cdの後にlsを実行
