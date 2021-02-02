@@ -14,6 +14,12 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 ZSH_THEME="candy"
 
+typeset -U path PATH
+path=(
+	/opt/homebrew/bin(N-/)
+	/usr/local/bin(N-/)
+	$path
+)
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -92,9 +98,26 @@ bindkey "^B" backward-word
   setopt hist_ignore_all_dups
 # 直前と同じコマンドラインはヒストリに記録しない
   setopt hist_ignore_dups
+# armとx86_64を切り替えられるように
+  setopt magic_equal_subst
 
 # cdの後にlsを実行
 chpwd() { ls -ltr --color=auto }
+
+# arm版を優先的に使用するように
+if (( $+commands[sw_vers] )) && (( $+commands[arch] )); then
+	[[ -x /usr/local/bin/brew ]] && alias brew="arch -arch x86_64 /usr/local/bin/brew"
+	alias x64='exec arch -x86_64 /bin/zsh'
+	alias a64='exec arch -arm64e /bin/zsh'
+	switch-arch() {
+		if  [[ "$(uname -m)" == arm64 ]]; then
+			arch=x86_64
+		elif [[ "$(uname -m)" == x86_64 ]]; then
+			arch=arm64e
+		fi
+		exec arch -arch $arch /bin/zsh
+	}
+fi
 
 # mkdirとcdを同時実行
 function mkcd() {
