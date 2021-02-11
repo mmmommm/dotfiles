@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/bin:$PARH"
 export PATH="/usr/local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
@@ -7,6 +7,9 @@ export ZSH="$HOME/.oh-my-zsh"
 #日本語を使用
 export LANG=ja_JP.UTF-8
 
+# golangの設定
+export GOPATH=$(go env GOPATH)
+export PATH="$PATH:$GOPATH/bin"
 #environmental paths
 #.bashrcのやつをコピー
 export PATH="/Users/mmomm/.nodebrew/current/bin:$PATH"
