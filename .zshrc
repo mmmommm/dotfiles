@@ -32,12 +32,12 @@ export PATH="/opt/homebrew/bin:$PATH"
 
 ZSH_THEME="candy"
 
-typeset -U path PATH
-path=(
-	/opt/homebrew/bin(N-/)
-	/usr/local/bin(N-/)
-	$path
-)
+# typeset -U path PATH
+# path=(
+# 	/opt/homebrew/bin(N-/)
+# 	/usr/local/bin(N-/)
+# 	$path
+# )
 
 #alias一覧
 # historyに日付を表示
