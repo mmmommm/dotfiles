@@ -13,8 +13,13 @@ git clone https://github.com/mmmommm/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./setup.sh
 ./deploy.sh
+chsh -s /bin/zsh
+echo $SHELL
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```  
-  
+権限で怒られるので
+`chmod 777 setup.sh`　する必要がある
+
 ## gitが入っていない場合  
   
 gitコマンドがあるかを確認  
