@@ -8,8 +8,8 @@ export ZSH="$HOME/.oh-my-zsh"
 export LANG=ja_JP.UTF-8
 
 # golangの設定
-export GOPATH=$(go env GOPATH)
-export PATH="$PATH:$GOPATH/bin"
+export GOPATH="$HOME/go"
+export PATH="$PATH:/usr/local/go/bin"
 #environmental paths
 #.bashrcのやつをコピー
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
