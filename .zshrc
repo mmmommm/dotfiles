@@ -18,6 +18,7 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 export PATH="/Users/local/.npm-global/bin/:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/.deno/bin:$PATH"
 
 ZSH_THEME="candy"
 
