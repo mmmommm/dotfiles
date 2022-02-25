@@ -8,6 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 export LANG=ja_JP.UTF-8
 
 # golangの設定
+export PATH = "$HOME/.cargo/env"
 export GOPATH="$HOME/go"
 export PATH="$PATH:/usr/local/go/bin"
 #environmental paths
