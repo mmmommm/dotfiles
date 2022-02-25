@@ -8,7 +8,6 @@ export ZSH="$HOME/.oh-my-zsh"
 export LANG=ja_JP.UTF-8
 
 # golangの設定
-export PATH = "$HOME/.cargo/env"
 export GOPATH="$HOME/go"
 export PATH="$PATH:/usr/local/go/bin"
 #environmental paths
@@ -20,6 +19,7 @@ export PATH="/Users/local/.npm-global/bin/:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.deno/bin:$PATH"
+export PATH="$HOME/.cargo/env:$PATH"
 
 ZSH_THEME="candy"
 
