@@ -64,6 +64,7 @@ alias w='which'
 alias serve='npm run serve'
 alias mongodb='mongod --config /usr/local/etc/mongod.conf'
 
+echo 'source <(kubectl completion zsh)' >> ~/.zshrc
 
 # プロンプトを2行で表示、時刻を表示
 PROMPT="%(?.%{${fg[green]}%}.%{${fg[red]}%})%n${reset_color}@${fg[blue]}%m${reset_color}(%*%) %~%# "
