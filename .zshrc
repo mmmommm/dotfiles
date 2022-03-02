@@ -33,6 +33,7 @@ ZSH_THEME="candy"
 
 #alias一覧
 # historyに日付を表示
+alias k='kubectl'
 alias h='fc -lt '%F %T' 1'
 alias la='ls -a'
 alias ll='ls -l'
@@ -40,7 +41,6 @@ alias sz='source ~/dotfiles/.zshrc'
 alias h='cd ~/desktop'
 alias d='docker'
 alias dc='docker-compose'
-alias dopen='open /Applications/Docker.app'
 alias cl='clear'
 alias ..='cd ..'
 alias ...='cd ../../'
@@ -49,19 +49,15 @@ alias g='git'
 alias ga='git add'
 alias gi='git init'
 alias gd='git diff'
-alias gs='git status'
+alias gst='git status'
 alias gp='git push origin HEAD'
 alias gb='git branch'
-alias gst='git status'
 alias gsw='git switch'
 alias gco='git checkout'
 alias gf='git fetch'
 alias gc='git commit'
-alias gfirst='git remote add origin'
-alias m='mkdir'
 alias path='echo $PATH'
 alias w='which'
-alias serve='npm run serve'
 alias mongodb='mongod --config /usr/local/etc/mongod.conf'
 
 echo 'source <(kubectl completion zsh)' >> ~/.zshrc
@@ -270,3 +266,10 @@ if [ -f '/Users/mmomm/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mmomm/goo
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/mmomm/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mmomm/google-cloud-sdk/completion.zsh.inc'; fi
+
+# kubectl の補完を効くようにするやつ
+source <(kubectl completion zsh)
+
+# k8s　のクラスターとNamespaceを表示してくれるやつ
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+PS1='$(kube_ps1)'$PS1
