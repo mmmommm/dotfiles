@@ -33,6 +33,7 @@ ZSH_THEME="candy"
 
 #alias一覧
 # historyに日付を表示
+alias reset='exec $SHELL -l'
 alias k='kubectl'
 alias h='fc -lt '%F %T' 1'
 alias la='ls -a'
@@ -273,3 +274,8 @@ source <(kubectl completion zsh)
 # k8s　のクラスターとNamespaceを表示してくれるやつ
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 PS1='$(kube_ps1)'$PS1
+source <(kubectl completion zsh)
+source <(kubectl completion zsh)
+source <(kubectl completion zsh)
+source <(kubectl completion zsh)
+source <(kubectl completion zsh)
