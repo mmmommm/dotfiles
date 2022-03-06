@@ -1,7 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-export PATH="$HOME/bin:$PARH"
-export PATH="/usr/local/bin:$PATH"
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 #日本語を使用
@@ -11,19 +7,22 @@ export LANG=ja_JP.UTF-8
 export GOPATH="$HOME/go"
 export PATH="$PATH:/usr/local/go/bin"
 #environmental paths
-#.bashrcのやつをコピー
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
+export PATH="/bin:$PARH"
+export PATH="/usr/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+export PATH="/usr/sbin:$PATH"
+export PATH="/sbin:$PATH"
 export PATH="/Users/local/.npm-global/bin/:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.deno/bin:$PATH"
 export CARGO_HOME="$HOME/.cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
-export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+# export PATH="$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 ZSH_THEME="candy"
+source $ZSH/oh-my-zsh.sh
 
 # typeset -U path PATH
 # path=(
@@ -61,8 +60,6 @@ alias gc='git commit'
 alias path='echo $PATH'
 alias w='which'
 alias mongodb='mongod --config /usr/local/etc/mongod.conf'
-
-echo 'source <(kubectl completion zsh)' >> ~/.zshrc
 
 # プロンプトを2行で表示、時刻を表示
 PROMPT="%(?.%{${fg[green]}%}.%{${fg[red]}%})%n${reset_color}@${fg[blue]}%m${reset_color}(%*%) %~%# "
@@ -173,8 +170,6 @@ autoload -U compinit && compinit -u
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
