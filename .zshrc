@@ -19,7 +19,6 @@ export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.deno/bin:$PATH"
 export CARGO_HOME="$HOME/.cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
-# export PATH="$HOME/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 ZSH_THEME="candy"
 source $ZSH/oh-my-zsh.sh
