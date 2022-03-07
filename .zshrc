@@ -8,7 +8,7 @@ export GOPATH="$HOME/go"
 export PATH="$PATH:/usr/local/go/bin"
 #environmental paths
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
-export PATH="/bin:$PARH"
+export PATH="/bin:$PATH"
 export PATH="/usr/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/sbin:$PATH"
