@@ -41,13 +41,6 @@ source <(kubectl completion zsh)
 # k8s　のクラスターとNamespaceを表示してくれるやつ
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 
-# typeset -U path PATH
-# path=(
-# 	/opt/homebrew/bin(N-/)
-# 	/usr/local/bin(N-/)
-# 	$path
-# )
-
 #alias一覧
 alias reset='exec $SHELL -l'
 alias k='kubectl'
@@ -147,12 +140,12 @@ fi
 
 # mkdirとcdを同時実行
 function mkcd() {
-  if [[ -d $1 ]]; then
-    echo "$1 already exists!"
-    cd $1
-  else
-    mkdir -p $1 && cd $1
-  fi
+	if [[ -d $1 ]]; then
+		echo "$1 already exists!"
+		cd $1
+	else
+		mkdir -p $1 && cd $1
+	fi
 }
 
 # git
@@ -173,17 +166,19 @@ plugins=(git zsh-syntax-highlighting zsh-completions)
 autoload -U compinit && compinit -u
 
 fpath=(~/.zsh $fpath)
-if [ -f ${HOME}/.zsh/git-completion.zsh ]; then
-  zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.zsh
-fi
 if [ -f ${HOME}/.zsh/git-prompt.sh ]; then
-  source ${HOME}/.zsh/git-prompt.sh
+	source ${HOME}/.zsh/git-prompt.sh
+fi
+if [ -f ${HOME}/.zsh/git-completion.zsh ]; then
+	zstyle ':completion:*:*:git:*'
+	script ~/.zsh/git-completion.zsh
+	source ${HOME}/.zsh/git-completion.zsh
 fi
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUPSTREAM=auto
-setopt PROMPT_SUBST ; PS1='[%n@%m %c$(__git_ps1 " (%s)")]\$ '
+export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/mmomm/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mmomm/google-cloud-sdk/path.zsh.inc'; fi
