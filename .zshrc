@@ -165,7 +165,8 @@ precmd () { vcs_info }
 plugins=(git zsh-syntax-highlighting zsh-completions)
 
 # zsh-completionsの設定
-autoload -U compinit && compinit -u
+autoload -Uz compinit
+compinit
 
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
