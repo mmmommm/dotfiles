@@ -34,8 +34,7 @@ export CLICOLOR=1
 
 # Import other file
 source $HOME/.bash_profile
-# source $HOME/.zshrc.kube
-source $HOME/.zshrc.local
+source $HOME/.zshrc.kube
 
 # kubectl の補完を効くようにするやつ
 source <(kubectl completion zsh)
