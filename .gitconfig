@@ -1,0 +1,23 @@
+[user]
+	email = ryota1839@gmail.com
+	name = Kise Ryota
+
+ [include]
+    path = ~/.gitconfig_local
+
+[core]
+	excludesfile = ~/.gitignore_global
+[push]
+	default = upstream
+[rebase]
+	autostash = true
+[pull]
+	rebase = true
+	ff = only
+[merge]
+	ff = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

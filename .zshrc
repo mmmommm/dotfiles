@@ -1,28 +1,46 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
 #日本語を使用
 export LANG=ja_JP.UTF-8
 
-# golangの設定
-export GOPATH="$HOME/go"
-export PATH="$PATH:/usr/local/go/bin"
-#environmental paths
-export PATH="$HOME/.nodebrew/current/bin:$PATH"
+# Common
 export PATH="/bin:$PATH"
 export PATH="/usr/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/sbin:$PATH"
-export PATH="/Users/local/.npm-global/bin/:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
+
+# Go
+export GOPATH="$HOME/go"
+export PATH="/usr/local/go/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
+
+# Node
+export PATH="$HOME/.nodebrew/current/bin:$PATH"
+
+# Deno
 export PATH="$HOME/.deno/bin:$PATH"
+
+# Rust
 export CARGO_HOME="$HOME/.cargo"
 export PATH="$CARGO_HOME/bin:$PATH"
 
-ZSH_THEME="candy"
-source $ZSH/oh-my-zsh.sh
+# Docker
+export COMPOSE_DOCKER_CLI_BUILD=1
+export DOCKER_BUILDKIT=1
+
+# terminal color
+export CLICOLOR=1
+
+# Import other file
+source $HOME/.bash_profile
+# source $HOME/.zshrc.kube
+source $HOME/.zshrc.local
+
+# kubectl の補完を効くようにするやつ
+source <(kubectl completion zsh)
+# k8s　のクラスターとNamespaceを表示してくれるやつ
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 
 # typeset -U path PATH
 # path=(
@@ -32,7 +50,6 @@ source $ZSH/oh-my-zsh.sh
 # )
 
 #alias一覧
-# historyに日付を表示
 alias reset='exec $SHELL -l'
 alias k='kubectl'
 alias h='fc -lt '%F %T' 1'
@@ -77,14 +94,10 @@ setopt auto_param_slash
 setopt auto_menu
 # 色付きで補完する
 zstyle ':completion:*' list-colors di=34 fi=0
-#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # beepを鳴らさないようにする
 setopt nolistbeep
 # 余分な空白は詰める
 setopt hist_reduce_blanks
-# ctrl-w, ctrl-bキーで単語移動
-bindkey "^W" forward-word
-bindkey "^B" backward-word
 # 重複する履歴は古い方を削除
 setopt hist_ignore_all_dups
 # 直前と同じコマンドラインはヒストリに記録しない
@@ -94,6 +107,34 @@ setopt magic_equal_subst
 
 # cdの後にlsを実行
 chpwd() { ls -ltr --color=auto }
+
+# prompt
+export GIT_PS1_SHOWCOLORHINTS=1
+git_prompt_sh=/usr/local/etc/bash_completion.d/git-prompt.sh
+if [ -e $git_prompt_sh ]; then
+  source $git_prompt_sh
+  precmd () { __git_ps1 "%F{cyan}%c%f" " $ " " (%s)" }
+else
+  PS1='%F{cyan}%c%f \$ '
+fi
+
+# completion
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
+zstyle ':completion:*' menu select
+fpath=(/usr/local/share/zsh/site-functions $fpath)
+autoload -U compinit
+compinit -u
+
+# history
+HISTSIZE=500000
+SAVEHIST=500000
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
 
 # arm版を優先的に使用するように
 if (( $+commands[sw_vers] )) && (( $+commands[arch] )); then
@@ -120,45 +161,15 @@ function mkcd() {
   fi
 }
 
-
-# bindkey '\^' cdup
-
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# git
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
+zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
 
 # Which plugins would you like to load?
 plugins=(git zsh-syntax-highlighting zsh-completions)
@@ -171,31 +182,6 @@ autoload -U compinit && compinit -u
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
 function is_osx() { [[ $OSTYPE == darwin* ]]; }
 function is_screen_running() { [ ! -z "$STY" ]; }
@@ -204,69 +190,10 @@ function is_screen_or_tmux_running() { is_screen_running || is_tmux_runnning; }
 function shell_has_started_interactively() { [ ! -z "$PS1" ]; }
 function is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
 
-# function tmux_automatically_attach_session()
-# {
-#     if is_screen_or_tmux_running; then
-#         ! is_exists 'tmux' && return 1
-
-#         if is_tmux_runnning; then
-#             echo "${fg_bold[red]} _____ __  __ _   ___  __ ${reset_color}"
-#             echo "${fg_bold[red]}|_   _|  \/  | | | \ \/ / ${reset_color}"
-#             echo "${fg_bold[red]}  | | | |\/| | | | |\  /  ${reset_color}"
-#             echo "${fg_bold[red]}  | | | |  | | |_| |/  \  ${reset_color}"
-#             echo "${fg_bold[red]}  |_| |_|  |_|\___//_/\_\ ${reset_color}"
-#         elif is_screen_running; then
-#             echo "This is on screen."
-#         fi
-#     else
-#         if shell_has_started_interactively && ! is_ssh_running; then
-#             if ! is_exists 'tmux'; then
-#                 echo 'Error: tmux command not found' 2>&1
-#                 return 1
-#             fi
-
-#             if tmux has-session >/dev/null 2>&1 && tmux list-sessions | grep -qE '.*]$'; then
-#                 # detached session exists
-#                 tmux list-sessions
-#                 echo -n "Tmux: attach? (y/N/num) "
-#                 read
-#                 if [[ "$REPLY" =~ ^[Yy]$ ]] || [[ "$REPLY" == '' ]]; then
-#                     tmux attach-session
-#                     if [ $? -eq 0 ]; then
-#                         echo "$(tmux -V) attached session"
-#                         return 0
-#                     fi
-#                 elif [[ "$REPLY" =~ ^[0-9]+$ ]]; then
-#                     tmux attach -t "$REPLY"
-#                     if [ $? -eq 0 ]; then
-#                         echo "$(tmux -V) attached session"
-#                         return 0
-#                     fi
-#                 fi
-#             fi
-
-#             if is_osx && is_exists 'reattach-to-user-namespace'; then
-#                 # on OS X force tmux's default command
-#                 # to spawn a shell in the user's namespace
-#                 tmux_config=$(cat $HOME/.tmux.conf <(echo 'set-option -g default-command "reattach-to-user-namespace -l $SHELL"'))
-#                 tmux -f <(echo "$tmux_config") new-session && echo "$(tmux -V) created new session supported OS X"
-#             else
-#                 tmux new-session && echo "tmux created new session"
-#             fi
-#         fi
-#     fi
-# }
-# tmux_automatically_attach_session
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/mmomm/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mmomm/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/mmomm/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mmomm/google-cloud-sdk/completion.zsh.inc'; fi
 
-# kubectl の補完を効くようにするやつ
-source <(kubectl completion zsh)
-
-# k8s　のクラスターとNamespaceを表示してくれるやつ
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 PS1='$(kube_ps1)'$PS1
