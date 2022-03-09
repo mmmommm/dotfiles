@@ -106,16 +106,11 @@ setopt magic_equal_subst
 
 # cdの後にlsを実行
 chpwd() { ls -ltr --color=auto }
-
-# prompt
-export GIT_PS1_SHOWCOLORHINTS=1
-git_prompt_sh=/usr/local/etc/bash_completion.d/git-prompt.sh
-if [ -e $git_prompt_sh ]; then
-  source $git_prompt_sh
-  precmd () { __git_ps1 "%F{cyan}%c%f" " $ " " (%s)" }
-else
-  PS1='%F{cyan}%c%f \$ '
-fi
+is_exists() { type "$1" >/dev/null 2>&1; return $?; }
+is_osx() { [[ $OSTYPE == darwin* ]]; }
+is_screen_running() { [ ! -z "$STY" ]; }
+shell_has_started_interactively() { [ ! -z "$PS1" ]; }
+is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
 
 # completion
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
@@ -168,6 +163,7 @@ zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
 zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
+zstyle ':completion::complete:*' use-cache true
 precmd () { vcs_info }
 
 # Which plugins would you like to load?
@@ -175,19 +171,19 @@ plugins=(git zsh-syntax-highlighting zsh-completions)
 
 # zsh-completionsの設定
 autoload -U compinit && compinit -u
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
 
-function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
-function is_osx() { [[ $OSTYPE == darwin* ]]; }
-function is_screen_running() { [ ! -z "$STY" ]; }
-function is_tmux_runnning() { [ ! -z "$TMUX" ]; }
-function is_screen_or_tmux_running() { is_screen_running || is_tmux_runnning; }
-function shell_has_started_interactively() { [ ! -z "$PS1" ]; }
-function is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
+fpath=(~/.zsh $fpath)
+if [ -f ${HOME}/.zsh/git-completion.zsh ]; then
+  zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.zsh
+fi
+if [ -f ${HOME}/.zsh/git-prompt.sh ]; then
+  source ${HOME}/.zsh/git-prompt.sh
+fi
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUPSTREAM=auto
+setopt PROMPT_SUBST ; PS1='[%n@%m %c$(__git_ps1 " (%s)")]\$ '
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/mmomm/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mmomm/google-cloud-sdk/path.zsh.inc'; fi
