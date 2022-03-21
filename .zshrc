@@ -111,7 +111,8 @@ is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select
 fpath=(/usr/local/share/zsh/site-functions $fpath)
-autoload -U compinit
+
+autoload -Uz compinit
 compinit -u
 
 # history
@@ -163,10 +164,6 @@ precmd () { vcs_info }
 
 # Which plugins would you like to load?
 plugins=(git zsh-syntax-highlighting zsh-completions)
-
-# zsh-completionsの設定
-autoload -Uz compinit
-compinit
 
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
