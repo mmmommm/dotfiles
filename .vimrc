@@ -62,4 +62,4 @@ set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
-imap <C-J> <esc>
+imap <D-J> <esc>
