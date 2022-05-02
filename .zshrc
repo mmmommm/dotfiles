@@ -37,11 +37,11 @@ source $HOME/.bash_profile
 source $HOME/.zshrc.kube
 
 # git の current branch出すやつ
-source /usr/local/etc/bash_completion.d/git-prompt.sh
+source ~/.zsh/git-prompt.sh
 # kubectl の補完を効くようにするやつ
 source <(kubectl completion zsh)
 # k8s　のクラスターとNamespaceを表示してくれるやつ
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
 
 #alias一覧
 alias reset='exec $SHELL -l'
@@ -112,8 +112,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select
 fpath=(/usr/local/share/zsh/site-functions $fpath)
 
-autoload -Uz compinit
-compinit -u
+autoload -Uz compinit && compinit
 
 # history
 HISTSIZE=500000
@@ -178,3 +177,4 @@ if [ -f '/Users/mmomm/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mmomm/goo
 if [ -f '/Users/mmomm/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mmomm/google-cloud-sdk/completion.zsh.inc'; fi
 
 PROMPT='$(kube_ps1)'$PROMPT
+export ENV_22FRESH=local
