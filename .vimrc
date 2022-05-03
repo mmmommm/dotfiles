@@ -7,6 +7,8 @@ set nobackup
 set noswapfile
 " 編集中のファイルが変更されたら自動で読み直す
 set autoread
+" 新しい行を開始した時、新しい行のインデントを現在の行と同じにする
+set autoindent
 " バッファが編集中でもその他のファイルを開けるように
 set hidden
 " 入力中のコマンドをステータスに表示する
@@ -59,6 +61,8 @@ set incsearch
 set wrapscan
 " 検索語をハイライト表示
 set hlsearch
+" ファイルタイプを認識してインデントをオンにする
+filetype plugin indent on
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
