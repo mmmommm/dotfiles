@@ -29,6 +29,10 @@ export PATH="$CARGO_HOME/bin:$PATH"
 export COMPOSE_DOCKER_CLI_BUILD=1
 export DOCKER_BUILDKIT=1
 
+# Mongo
+export PATH="/usr/local/mongodb/bin:$PATH"
+export PATH="/usr/local/opt/mongodb-community@4.4/bin:$PATH"
+
 # terminal color
 export CLICOLOR=1
 
