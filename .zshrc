@@ -50,11 +50,12 @@ source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
 #alias一覧
 alias reset='exec $SHELL -l'
 alias k='kubectl'
+alias sctl = 'supervisorctl'
 alias h='fc -lt '%F %T' 1'
 alias la='ls -a'
 alias ll='ls -l'
 alias sz='source ~/dotfiles/.zshrc'
-alias h='cd ~/desktop'
+alias home='cd ~/desktop'
 alias d='docker'
 alias dc='docker-compose'
 alias cl='clear'
@@ -62,16 +63,6 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../..'
 alias g='git'
-alias ga='git add'
-alias gi='git init'
-alias gd='git diff'
-alias gst='git status'
-alias gp='git push origin HEAD'
-alias gb='git branch'
-alias gsw='git switch'
-alias gco='git checkout'
-alias gf='git fetch'
-alias gc='git commit'
 alias path='echo $PATH'
 alias w='which'
 alias mongodb='mongod --config /usr/local/etc/mongod.conf'
@@ -181,4 +172,3 @@ if [ -f '/Users/mmomm/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mmomm/goo
 if [ -f '/Users/mmomm/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mmomm/google-cloud-sdk/completion.zsh.inc'; fi
 
 PROMPT='$(kube_ps1)'$PROMPT
-export ENV_22FRESH=local
