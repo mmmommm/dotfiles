@@ -104,6 +104,16 @@ is_screen_running() { [ ! -z "$STY" ]; }
 shell_has_started_interactively() { [ ! -z "$PS1" ]; }
 is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
 
+# 補完を有効にする
+autoload -U compinit
+compinit -u
+
+# 補完メッセージを読みやすくする
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' format '%B%d%b'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*' group-name ''
+
 # history
 HISTSIZE=500000
 SAVEHIST=500000
