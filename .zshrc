@@ -40,6 +40,9 @@ export CLICOLOR=1
 source $HOME/.bash_profile
 source $HOME/.zshrc.kube
 
+export JFROG_USER_NAME=kise_ryota@cam-inc.co.jp
+export JFROG_CREDENTIAL=AKCp8kqCB3Mc9Qa7htbsofkosVZkTciVGzF2Mq9ugbfDifnSx7SFKtwNXDmS8HoFz7Vs6FWEa
+
 # git の current branch出すやつ
 source ~/.zsh/git-prompt.sh
 # kubectl の補完を効くようにするやつ
@@ -100,13 +103,6 @@ is_osx() { [[ $OSTYPE == darwin* ]]; }
 is_screen_running() { [ ! -z "$STY" ]; }
 shell_has_started_interactively() { [ ! -z "$PS1" ]; }
 is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
-
-# completion
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
-zstyle ':completion:*' menu select
-fpath=(/usr/local/share/zsh/site-functions $fpath)
-
-autoload -Uz compinit && compinit
 
 # history
 HISTSIZE=500000
