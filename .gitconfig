@@ -4,7 +4,25 @@
 
  [include]
     path = ~/.gitconfig_local
-
+[alias]
+	a = add
+	br = branch
+	c = commit
+	co = checkout
+	cob = checkout -b
+	brd = branch -d
+	diffw = diff --word-diff
+	g = git
+	olog = log --oneline
+	ph = push origin HEAD
+	plog = log --pretty='format:%C(yellow)%h %C(green)%cd %C(reset)%s %C(red)%d %C(cyan)[%an]' --date=iso
+	plh = pull origin HEAD
+	rb = rebase
+	rs = reset --soft HEAD^
+	st = status
+	sts = stash
+	stsp = stash pop
+	swc = switch -c
 [core]
 	excludesfile = ~/.gitignore_global
 [push]
