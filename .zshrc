@@ -50,7 +50,6 @@ source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
 #alias一覧
 alias reset='exec $SHELL -l'
 alias k='kubectl'
-alias sctl = 'supervisorctl'
 alias h='fc -lt '%F %T' 1'
 alias la='ls -a'
 alias ll='ls -l'
