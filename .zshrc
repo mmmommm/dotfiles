@@ -105,8 +105,12 @@ shell_has_started_interactively() { [ ! -z "$PS1" ]; }
 is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
 
 # 補完を有効にする
-autoload -U compinit
-compinit -u
+autoload -Uz compinit
+compinit -i
+
+export NVM_DIR="/Users/Aaron/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # 補完メッセージを読みやすくする
 zstyle ':completion:*' verbose yes
