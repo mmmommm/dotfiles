@@ -14,6 +14,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="/usr/local/go/bin:$PATH"
 export PATH="$GOPATH/bin:$PATH"
+export PATH="$GOPATH/bin/gqlgen:$PATH"
 
 # Node
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
