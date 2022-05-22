@@ -41,13 +41,10 @@ export CLICOLOR=1
 source $HOME/.bash_profile
 source $HOME/.zshrc.kube
 
-export JFROG_USER_NAME=kise_ryota@cam-inc.co.jp
-export JFROG_CREDENTIAL=AKCp8kqCB3Mc9Qa7htbsofkosVZkTciVGzF2Mq9ugbfDifnSx7SFKtwNXDmS8HoFz7Vs6FWEa
-
 # git の current branch出すやつ
 source ~/.zsh/git-prompt.sh
 # kubectl の補完を効くようにするやつ
-source <(kubectl completion zsh)
+source <(kubectl completion zskh)
 # k8s　のクラスターとNamespaceを表示してくれるやつ
 source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
 
