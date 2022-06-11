@@ -174,10 +174,10 @@ GIT_PS1_SHOWUPSTREAM=auto
 export PS1='[%n@%m %c$(__git_ps1 " (%s)")]\$ '
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/mmomm/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mmomm/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/mmomm/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mmomm/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # asdf
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
