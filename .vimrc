@@ -61,6 +61,8 @@ set incsearch
 set wrapscan
 " 検索語をハイライト表示
 set hlsearch
+" ヤンクした内容をクリップボードにも入れる
+set clipboard+=unnamed
 " ファイルタイプを認識してインデントをオンにする
 filetype plugin indent on
 " ESC連打でハイライト解除
