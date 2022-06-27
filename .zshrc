@@ -17,7 +17,6 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="$GOPATH/bin/gqlgen:$PATH"
 
 # Node
-export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
 # Deno
 export PATH="$HOME/.deno/bin:$PATH"
@@ -182,3 +181,5 @@ if [ -f '/Users/mmomm/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mmomm/goo
 if [ -f '/Users/mmomm/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mmomm/google-cloud-sdk/completion.zsh.inc'; fi
 
 PROMPT='$(kube_ps1)'$PROMPT
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
