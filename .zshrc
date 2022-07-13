@@ -47,8 +47,6 @@ source $HOME/.zshrc.kube
 source ~/.zsh/git-prompt.sh
 # kubectl の補完を効くようにするやつ
 source <(kubectl completion zsh)
-# k8s　のクラスターとNamespaceを表示してくれるやつ
-source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
 
 #alias一覧
 alias reset='exec $SHELL -l'
@@ -179,7 +177,5 @@ if [ -f '/Users/mmomm/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mmomm/goo
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/mmomm/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mmomm/google-cloud-sdk/completion.zsh.inc'; fi
-
-PROMPT='$(kube_ps1)'$PROMPT
 
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
