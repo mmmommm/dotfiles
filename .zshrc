@@ -41,7 +41,6 @@ export CLICOLOR=1
 
 # Import other file
 source $HOME/.bash_profile
-source $HOME/.zshrc.kube
 
 # git の current branch出すやつ
 source ~/.zsh/git-prompt.sh
