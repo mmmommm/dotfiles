@@ -39,6 +39,11 @@ export JFROG_CREDENTIAL=AKCp8kqCB3Mc9Qa7htbsofkosVZkTciVGzF2Mq9ugbfDifnSx7SFKtwN
 # terminal color
 export CLICOLOR=1
 
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+
 # Import other file
 source $HOME/.bash_profile
 
@@ -177,4 +182,5 @@ if [ -f '/Users/mmomm/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mmomm/goo
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/mmomm/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mmomm/google-cloud-sdk/completion.zsh.inc'; fi
 
+# asdf
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
