@@ -33,9 +33,6 @@ export DOCKER_BUILDKIT=1
 export PATH="/usr/local/mongodb/bin:$PATH"
 export PATH="/usr/local/opt/mongodb-community@4.4/bin:$PATH"
 
-export JFROG_USER_NAME=kise_ryota@cam-inc.co.jp
-export JFROG_CREDENTIAL=AKCp8kqCB3Mc9Qa7htbsofkosVZkTciVGzF2Mq9ugbfDifnSx7SFKtwNXDmS8HoFz7Vs6FWEa
-
 # terminal color
 export CLICOLOR=1
 
