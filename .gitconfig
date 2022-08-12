@@ -64,6 +64,8 @@
 	excludesfile = ~/.gitignore_global
 [push]
 	default = upstream
+[commit]
+  template = ~/.gitmessage
 [rebase]
 	autostash = true
 [pull]
