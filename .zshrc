@@ -56,7 +56,7 @@ alias h='fc -lt '%F %T' 1'
 alias la='ls -a'
 alias ll='ls -l'
 alias sz='source ~/dotfiles/.zshrc'
-alias home='cd ~/desktop'
+alias home='cd ~/'
 alias d='docker'
 alias dc='docker-compose'
 alias cl='clear'
@@ -141,6 +141,11 @@ if (( $+commands[sw_vers] )) && (( $+commands[arch] )); then
 		fi
 		exec arch -arch $arch /bin/zsh
 	}
+fi
+
+# 初回シェル時のみ tmux実行
+if [ $SHLVL = 1 ]; then
+  tmux
 fi
 
 # mkdirとcdを同時実行
