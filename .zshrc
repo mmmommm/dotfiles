@@ -36,6 +36,8 @@ export PATH="/usr/local/opt/mongodb-community@4.4/bin:$PATH"
 # terminal color
 export CLICOLOR=1
 
+export USE_GKE_GCLOUD_AUTH_PLUGIN=true
+
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
