@@ -1,0 +1,98 @@
+{
+  "git.mergeEditor": false,
+  // デバッグ中に行内に変数値を表示
+  "debug.inlineValues": "auto",
+  // デバッグコンソールの表示方法
+  "debug.internalConsoleOptions": "openOnSessionStart",
+  // デバッグビューの表示方法
+  "debug.openDebug": "openOnSessionStart",
+  // テキストコピー時に書式設定を含める
+  "editor.copyWithSyntaxHighlighting": false,
+  // ドラッグアンドドロップで選択範囲のテキストを移動できるようにする
+  "editor.dragAndDrop": false,
+  // 貼り付けを行ったときに自動でフォーマット
+  "editor.formatOnPaste": true,
+  // ファイル保存時に自動でフォーマット
+  "editor.formatOnSave": true,
+  // 入力した行を自動でフォーマット
+  "editor.formatOnType": true,
+  // ミニマップの最大幅
+  "editor.minimap.maxColumn": 60,
+  // ミニマップのスライダーの表示方法
+  "editor.minimap.showSlider": "always",
+  // ミニマップのサイズ
+  "editor.minimap.size": "fit",
+  // 制御文字を表示
+  "editor.renderControlCharacters": true,
+  // エディター上での空白文字の表示方法
+  "editor.renderWhitespace": "all",
+  // 行の折りたたみ記号の表示方法
+  "editor.showFoldingControls": "always",
+  // 1つのタブに相当する半角スペースの数
+  "editor.tabSize": 2,
+  // 単語の区切り文字
+  "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?　、。！？「」【】『』（）",
+  // 行の折り返し表示
+  // "editor.wordWrap": "on",
+  // 名前重複時の名前付け規則
+  "explorer.incrementalNaming": "smart",
+  // 言語に対するファイルの関連付け
+  "files.associations": {
+    // あれば記述する
+  },
+  // 改行コードの規定値
+  "files.eol": "\n",
+  // 非表示にするファイル・ディレクトリのパスのパターン
+  "files.exclude": {
+    // あれば記述する
+  },
+  // ファイル保存時に行末に改行を挿入
+  "files.insertFinalNewline": true,
+  // ファイル保存時に最終行以降の空行を削除
+  "files.trimFinalNewlines": true,
+  // ファイル保存時に各行の末尾にある半角スペースを削除
+  "files.trimTrailingWhitespace": true,
+  // 監視対象から外すファイル・ディレクトリのパスのパターン
+  "files.watcherExclude": {
+    // あれば記述する
+  },
+  // 検索対象から外すファイル・ディレクトリのパスのパターン
+  "search.exclude": {
+    //あれば記述する
+  },
+  // 検索ビューの検索結果に行数を併記
+  "search.showLineNumbers": true,
+  // アクティブなターミナルセッションがある場合、終了時に確認を行う
+  "terminal.integrated.confirmOnExit": "always",
+  // ターミナルで選択したテキストをクリップボードにコピー
+  "terminal.integrated.copyOnSelection": true,
+  // エディターのタブのサイズ
+  "workbench.editor.tabSizing": "shrink",
+  // ファイルアイコンテーマ
+  // "workbench.iconTheme": "material-icon-theme",
+  // 起動時に表示するエディター
+  "workbench.startupEditor": "readme",
+  /* 各言語、ファイル固有の設定 */
+  "[csv]": {
+    // 行の折り返し表示
+    "editor.wordWrap": "off"
+  },
+  "[json]": {
+    // 既定のフォーマッター
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[log]": {
+    // 行の折り返し表示
+    "editor.wordWrap": "off"
+  },
+  "[python]": {
+    // 1つのタブに相当する半角スペースの数
+    "editor.tabSize": 4
+  },
+  "[tsv]": {
+    // Tabキーで半角スペースを挿入
+    "editor.insertSpaces": false,
+    // 行の折り返し表示
+    "editor.wordWrap": "off"
+  }
+}
