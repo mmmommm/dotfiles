@@ -145,11 +145,6 @@ if (( $+commands[sw_vers] )) && (( $+commands[arch] )); then
 	}
 fi
 
-# 初回シェル時のみ tmux実行
-if [ $SHLVL = 1 ]; then
-  tmux
-fi
-
 # mkdirとcdを同時実行
 function mkcd() {
 	if [[ -d $1 ]]; then
