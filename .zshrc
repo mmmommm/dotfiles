@@ -43,8 +43,20 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=true
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
+# fzf を用いて　　ghq のリポジトリ移動をできるように
+frepo() {
+  local dir
+  dir=$(ghq list > /dev/null | fzf-tmux --reverse +m) &&
+    cd $(ghq root)/$dir
+}
+zle -N frepo
+bindkey '^]' frepo
+
 # Import other file
-source $HOME/.bash_profile
+source ~/ghq/github.com/mmmommm/dotfiles/.bash_profile
+
+# bun
+source ~/.bun/bin
 
 # git の current branch出すやつ
 source ~/.zsh/git-prompt.sh
@@ -57,7 +69,7 @@ alias k='kubectl'
 alias h='fc -lt '%F %T' 1'
 alias la='ls -a'
 alias ll='ls -l'
-alias sz='source ~/dotfiles/.zshrc'
+alias sz='source ~/ghq/github.com/mmmommm/dotfiles/.zshrc'
 alias home='cd ~/'
 alias d='docker'
 alias dc='docker-compose'
@@ -182,4 +194,11 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. /usr/local/opt/asdf/libexec/asdf.sh
+
+# bun completions
+[ -s "/Users/mmomm/.bun/_bun" ] && source "/Users/mmomm/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
