@@ -69,8 +69,8 @@
 [rebase]
 	autostash = true
 [pull]
-	rebase = true
-	ff = only
+	rebase = false
+	ff = false
 [merge]
 	ff = false
 [filter "lfs"]
