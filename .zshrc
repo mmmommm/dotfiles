@@ -33,10 +33,16 @@ export DOCKER_BUILDKIT=1
 export PATH="/usr/local/mongodb/bin:$PATH"
 export PATH="/usr/local/opt/mongodb-community@4.4/bin:$PATH"
 
+# Istio
+export PATH="$HOME/.istioctl/bin:$PATH"
+
 # terminal color
 export CLICOLOR=1
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=true
+
+# kubernetes
+export KUBERNETES_MASTER=$HOME/.kube/config
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -53,10 +59,10 @@ zle -N frepo
 bindkey '^]' frepo
 
 # Import other file
-source ~/ghq/github.com/mmmommm/dotfiles/.bash_profile
+source ~/dotfiles/.bash_profile
 
 # bun
-source ~/.bun/bin
+# source ~/.bun/bin
 
 # git の current branch出すやつ
 source ~/.zsh/git-prompt.sh
@@ -69,7 +75,7 @@ alias k='kubectl'
 alias h='fc -lt '%F %T' 1'
 alias la='ls -a'
 alias ll='ls -l'
-alias sz='source ~/ghq/github.com/mmmommm/dotfiles/.zshrc'
+alias sz='source ~/dotfiles/.zshrc'
 alias home='cd ~/'
 alias d='docker'
 alias dc='docker-compose'
@@ -81,6 +87,9 @@ alias g='git'
 alias path='echo $PATH'
 alias w='which'
 alias mongodb='mongod --config /usr/local/etc/mongod.conf'
+alias rck='kubectl run kise-curl --image=curlimages/curl -i --tty --rm -- sh'
+alias rdk='kubectl run kise-dig --image=tutum/dnsutils -i --tty --rm -- sh'
+alias rrk='kubectl run redis-cli --image redis:latest -it --rm -- bash'
 
 # プロンプトを2行で表示、時刻を表示
 PROMPT="%(?.%{${fg[green]}%}.%{${fg[red]}%})%n${reset_color}@${fg[blue]}%m${reset_color}(%*%) %~%# "
@@ -194,7 +203,7 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # asdf
-. /usr/local/opt/asdf/libexec/asdf.sh
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 # bun completions
 [ -s "/Users/mmomm/.bun/_bun" ] && source "/Users/mmomm/.bun/_bun"
