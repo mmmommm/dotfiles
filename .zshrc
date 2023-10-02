@@ -12,6 +12,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 
 # Go
 export GOPATH="$HOME/go"
+export GOROOT=$(go1.21.0 env GOROOT)
 export PATH="/usr/local/go/bin:$PATH"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$GOPATH/bin/gqlgen:$PATH"
