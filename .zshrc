@@ -11,8 +11,8 @@ export PATH="/sbin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 
 # Go
-export GOROOT_BOOTSTRAP="/usr/local/go"
-export PATH="$HOME/goroot/bin:$PATH"
+export GOPATH="$HOME/goroot"
+export PATH="$GOPATH/bin:$PATH"
 
 # Node
 

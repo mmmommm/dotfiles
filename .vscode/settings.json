@@ -94,5 +94,6 @@
     "editor.insertSpaces": false,
     // 行の折り返し表示
     "editor.wordWrap": "off"
-  }
+  },
+  "gopls": { "experimentalWorkspaceModule": true}
 }
