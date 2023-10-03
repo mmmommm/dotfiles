@@ -95,5 +95,39 @@
     // 行の折り返し表示
     "editor.wordWrap": "off"
   },
-  "gopls": { "experimentalWorkspaceModule": true}
+  // For gopls
+  "go.useLanguageServer": true,
+  "[go]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true,
+    },
+    // Optional: Disable snippets, as they conflict with completion ranking.
+    "editor.snippetSuggestions": "none",
+  },
+  // Global settings for gopls
+  // https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+  "gopls": {
+    // === Officially supported Settings ===
+
+    // This controls the information that appears in the hover text.
+    "hoverKind": "SynopsisDocumentation",
+    // If true, then completion responses may contain placeholders for function parameters or struct fields.
+    "usePlaceholders": true,
+    // This controls where points documentation for given package in `textDocument/documentLink`.
+    "linkTarget": "pkg.go.dev",
+
+    // === Experimental Settings ===
+
+    // If true, it enables the use of the staticcheck.io analyzers.
+    // Warning: This will significantly increase memory usage.
+    "staticcheck": false,
+    // If false, indicates that the user does not want documentation with completion results.
+    "completionDocumentation": true,
+    // If true, the completion engine is allowed to make suggestions for packages that you do not currently import.
+    "completeUnimported": true,
+    // If true, this turns on the ability to return completions from deep inside relevant entities, rather than just the locally accessible ones.
+    "deepCompletion": true,
+    "experimentalWorkspaceModule": true
+  }
 }
