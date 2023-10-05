@@ -12,6 +12,9 @@ export PATH="/opt/homebrew/bin:$PATH"
 
 # Go
 export GOROOT_BOOTSTRAP="$HOME/go-darwin-arm64-bootstrap"
+export GOROOT="$HOME/goroot"
+export PATH="$GOROOT/bin:$PATH"
+
 
 # Node
 
