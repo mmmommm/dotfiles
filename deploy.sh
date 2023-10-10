@@ -1,17 +1,19 @@
-set -euo pipefail
+#!/usr/bin/env bash
 
-source lib/echos.sh
+# 未定義な変数があったら途中で終了する
+set -u
 
-readonly DOT_FILES=( .bashrc .zshrc .zshenv )
+# 今のディレクトリ
+# dotfilesディレクトリに移動する
+BASEDIR=$(dirname $0)
+cd $BASEDIR
 
-for file in ${DOT_FILES[@]}; do
-  dest=${HOME}/${file}
-  if [ -e ${dest} ]; then
-    warn "[warn] ${dest}: skipped (already exists)"
-  else
-    ln -s $HOME/dotfiles/$file $dest
-    ok "[ ok ] ${dest}: created"
-  fi
+# dotfilesディレクトリにある、ドットから始まり2文字以上の名前のファイルに対して
+for f in .??*; do
+    [ "$f" = ".git" ] && continue
+    [ "$f" = ".gitconfig.local.template" ] && continue
+    [ "$f" = ".gitmodules" ] && continue
+
+    # シンボリックリンクを貼る
+    ln -snfv ${PWD}/"$f" ~/
 done
-
-ok "Complete!"
