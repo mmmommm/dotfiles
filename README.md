@@ -38,12 +38,12 @@ $ ./all.bash
 ```
 
 ## その他使用しているもののインストール
-[これ](https://qiita.com/mikan3rd/items/d41a8ca26523f950ea9d#pencil2-git-prompt--git-prompt-%E3%81%AE%E7%94%A8%E6%84%8F)
+- [これ](https://qiita.com/mikan3rd/items/d41a8ca26523f950ea9d#pencil2-git-prompt--git-prompt-%E3%81%AE%E7%94%A8%E6%84%8F)
 にそって `git completion zsh` の設定をする
-[これ](https://eng-blog.iij.ad.jp/archives/19131)にそって `kube-ps1` の設定をする
-[これ](https://www.canva.com/design/DAFGYeHVyzA/9Xgj4-HZAF02UXHm7ol_FQ/view)にそって `raycast` の設定をする
-- my schedule (apple login してカレンダー紐付け)
-- clipboard history に cmd + shift + c でホットキー設定
+- [これ](https://eng-blog.iij.ad.jp/archives/19131)にそって `kube-ps1` の設定をする
+- [これ](https://www.canva.com/design/DAFGYeHVyzA/9Xgj4-HZAF02UXHm7ol_FQ/view)にそって `raycast` の設定をする
+  - my schedule (apple login してカレンダー紐付け)
+  - clipboard history に cmd + shift + c でホットキー設定
 
 ```terminal
 brew install --cask raycast
@@ -57,5 +57,4 @@ cd ~/.zsh
 curl -o git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 curl -o git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 curl -o _git https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
-wget https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
 ```

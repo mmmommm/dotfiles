@@ -200,10 +200,7 @@ setopt PROMPT_SUBST
 # kubectl の補完を効くようにするやつ
 source <(kubectl completion zsh)
 
-# wget https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
-# mv kube-ps1.sh ~/.kube-ps1.sh or mv kube-ps1.sh ~/.zsh/kube-ps1.sh
-source ~/.kube-ps1.sh # or source ~/.zsh/kube-ps1.sh
-export PS1='$(kube_ps1) ${debian_chroot:+($debian_chroot)}%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f\$ '
+export PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f\$ '
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
