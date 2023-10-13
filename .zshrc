@@ -15,8 +15,7 @@ export GOROOT_BOOTSTRAP="$HOME/go-darwin-arm64-bootstrap"
 export GOROOT="$HOME/goroot"
 export PATH="$GOROOT/bin:$PATH"
 
-
-# Node
+# Node: node は asdf で管理
 
 # Deno
 export PATH="$HOME/.deno/bin:$PATH"
@@ -49,7 +48,7 @@ export KUBERNETES_MASTER=$HOME/.kube/config
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
-# fzf を用いて　　ghq のリポジトリ移動をできるように
+# fzf を用いて ghq のリポジトリ移動をできるように
 frepo() {
   local dir
   dir=$(ghq list > /dev/null | fzf-tmux --reverse +m) &&
@@ -59,13 +58,11 @@ zle -N frepo
 bindkey '^]' frepo
 
 # Import other file
-source ~/dotfiles/.bash_profile
+# source ~/dotfiles/.bash_profile
 
 # bun
 # source ~/.bun/bin
 
-# git の current branch出すやつ
-source ~/.zsh/git-prompt.sh
 # kubectl の補完を効くようにするやつ
 source <(kubectl completion zsh)
 
@@ -190,11 +187,21 @@ precmd () { vcs_info }
 # Which plugins would you like to load?
 plugins=(git zsh-syntax-highlighting zsh-completions)
 
+# git の current branch出すやつ
+source ~/.zsh/git-prompt.sh
+# git-completionの読み込み
+fpath=(~/.zsh $fpath)
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUPSTREAM=auto
-export PS1='[%n@%m %c$(__git_ps1 " (%s)")]\$ '
+# プロンプトの表示設定(好きなようにカスタマイズ可)
+setopt PROMPT_SUBST
+
+export PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f
+\$ '
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
