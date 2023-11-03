@@ -1,5 +1,6 @@
 #日本語を使用
 export LANG=ja_JP.UTF-8
+export USER_NAME=mmomm
 
 # Common
 export PATH="/bin:$PATH"
@@ -219,8 +220,12 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 # bun completions
-[ -s "/Users/mmomm/.bun/_bun" ] && source "/Users/mmomm/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# KServe
+export KO_DEFAULTPLATFORMS=linux/arm64
+export KO_DOCKER_REPO="docker.io/$USER_NAME"

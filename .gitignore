@@ -2,3 +2,4 @@
 .zshrc.local
 .idea
 .gitconfig_local
+.vscode/*
