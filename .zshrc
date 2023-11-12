@@ -14,6 +14,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 # Go
 export GOROOT_BOOTSTRAP="$HOME/go-darwin-arm64-bootstrap"
 export GOROOT="$HOME/goroot"
+export GOPRIVATE="github.com/cycloud-io,github.com/CyberAgent,github.com/mmmommm"
 export PATH="$GOROOT/bin:$PATH"
 
 # Node: node は asdf で管理
