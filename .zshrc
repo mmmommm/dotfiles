@@ -11,11 +11,18 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="/sbin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 
+# Java
+export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
+
+# Ansible
+export PATH="$HOME/.local/bin:$PATH"
+
 # Go
 export GOROOT_BOOTSTRAP="$HOME/go-darwin-arm64-bootstrap"
 export GOROOT="$HOME/goroot"
 export GOPRIVATE="github.com/cycloud-io,github.com/CyberAgent,github.com/mmmommm"
 export PATH="$GOROOT/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 
 # Node: node は asdf で管理
 
@@ -58,13 +65,13 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
 # fzf を用いて ghq のリポジトリ移動をできるように
-frepo() {
-  local dir
-  dir=$(ghq list > /dev/null | fzf-tmux --reverse +m) &&
-    cd $(ghq root)/$dir
-}
-zle -N frepo
-bindkey '^]' frepo
+# frepo() {
+#   local dir
+#   dir=$(ghq list > /dev/null | fzf-tmux --reverse +m) &&
+#     cd $(ghq root)/$dir
+# }
+# zle -N frepo
+# bindkey '^]' frepo
 
 # Import other file
 # source ~/dotfiles/.bash_profile
@@ -230,3 +237,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # KServe
 export KO_DEFAULTPLATFORMS=linux/arm64
 export KO_DOCKER_REPO="docker.io/$USER_NAME"
+
+# tmux
+# 初回シェル時のみ tmux実行
+if [ $SHLVL = 1 ]; then
+  tmux
+fi
