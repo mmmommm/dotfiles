@@ -68,4 +68,8 @@ filetype plugin indent on
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
+" Ctrl + j で　Esc と同じ動作をする
 imap <C-J> <esc>
+
+" ビジュアルモードで Ctrl + c でコピーしたときに選択したテキストをクリップボードにコピーし、削除する
+vnoremap <C-C> "+x
