@@ -3,7 +3,7 @@
 	name = Kise Ryota
 
 [include]
-	path = ~/.gitconfig_local
+	path = .gitconfig_local
 [color]
 	status = auto
 	diff = auto
@@ -38,9 +38,10 @@
 	brd = branch -d
 	diffw = diff --word-diff
 	g = git
-	olog = log --oneline
 	ph = push origin HEAD
 	plog = log --pretty='format:%C(yellow)%h %C(green)%cd %C(reset)%s %C(red)%d %C(cyan)[%an]' --date=iso
+	lbr = log --first-parent
+	lo = log --oneline
 	la = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
 	lb = log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d%Creset'
 	lc = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
@@ -58,6 +59,7 @@
 	st = status
 	sts = stash
 	stsl = stash list
+	stsd = stash drop
 	stsp = stash pop
 	swc = switch -c
 [core]

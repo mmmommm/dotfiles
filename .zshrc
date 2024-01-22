@@ -99,7 +99,7 @@ alias w='which'
 alias mongodb='mongod --config /usr/local/etc/mongod.conf'
 alias rck='kubectl run kise-curl --image=curlimages/curl -i --tty --rm -- sh'
 alias rdk='kubectl run kise-dig --image=tutum/dnsutils -i --tty --rm -- sh'
-alias rrk='kubectl run redis-cli --image redis:latest -it --rm -- bash'
+alias rrk='kubectl run kise-redis --image redis:latest -it --rm -- bash'
 
 # プロンプトを2行で表示、時刻を表示
 PROMPT="%(?.%{${fg[green]}%}.%{${fg[red]}%})%n${reset_color}@${fg[blue]}%m${reset_color}(%*%) %~%# "
@@ -242,4 +242,9 @@ export KO_DOCKER_REPO="docker.io/$USER_NAME"
 # 初回シェル時のみ tmux実行
 if [ $SHLVL = 1 ]; then
   tmux
+fi
+
+# シークレットファイルを読み込む
+if [ -f ~/.zshrc_local ]; then
+  source .zshrc.local
 fi
