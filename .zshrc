@@ -59,6 +59,12 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=true
 # kubernetes
 export KUBERNETES_MASTER=$HOME/.kube/config
 
+# kserve ref: https://kserve.github.io/website/latest/developer/developer/#install-knative-on-a-kubernetes-cluster
+export KO_DEFAULTPLATFORMS=linux/arm64
+export KO_DOCKER_REPO=docker.io/$USER_NAME
+export KSERVE_ENABLE_SELF_SIGNED_CA=true
+
+
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
