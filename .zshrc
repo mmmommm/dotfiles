@@ -251,6 +251,4 @@ if [ $SHLVL = 1 ]; then
 fi
 
 # シークレットファイルを読み込む
-if [ -f ~/.zshrc_local ]; then
-  source .zshrc.local
-fi
+source $HOME/dotfiles/.zshrc.local
