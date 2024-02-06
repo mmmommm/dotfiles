@@ -64,6 +64,8 @@ export KO_DEFAULTPLATFORMS=linux/arm64
 export KO_DOCKER_REPO=docker.io/$USER_NAME
 export KSERVE_ENABLE_SELF_SIGNED_CA=true
 
+# シークレットファイルを読み込む
+# source $HOME/dotfiles/.zshrc.local
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -106,6 +108,8 @@ alias mongodb='mongod --config /usr/local/etc/mongod.conf'
 alias rck='kubectl run kise-curl --image=curlimages/curl -i --tty --rm -- sh'
 alias rdk='kubectl run kise-dig --image=tutum/dnsutils -i --tty --rm -- sh'
 alias rrk='kubectl run kise-redis --image redis:latest -it --rm -- bash'
+alias mergekubeconf='KUBECONFIG=~/.kube/config.backup:~/.kube/config-gpuaas:~/.kube/config-ml kubectl config view --merge --flatten > ~/.kube/config'
+alias copykubeconf='cp ~/.kube/config{,.backup}'
 
 # プロンプトを2行で表示、時刻を表示
 PROMPT="%(?.%{${fg[green]}%}.%{${fg[red]}%})%n${reset_color}@${fg[blue]}%m${reset_color}(%*%) %~%# "
@@ -249,6 +253,3 @@ export KO_DOCKER_REPO="docker.io/$USER_NAME"
 if [ $SHLVL = 1 ]; then
   tmux
 fi
-
-# シークレットファイルを読み込む
-source $HOME/dotfiles/.zshrc.local
