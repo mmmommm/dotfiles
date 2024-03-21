@@ -37,6 +37,18 @@ $ cd src
 $ ./all.bash
 ```
 
+### Go のアップデート
+
+[Keeping up with releases](https://go.dev/doc/install/source) を参考に
+`${HOME}/go/src` ではなく `${HOME}/goroot/src` にあるので
+
+```terminal
+$ cd goroot/src
+$ git fetch
+$ git checkout <tag>
+$ ./all.bash
+```
+
 ## その他使用しているもののインストール
 - [これ](https://qiita.com/mikan3rd/items/d41a8ca26523f950ea9d#pencil2-git-prompt--git-prompt-%E3%81%AE%E7%94%A8%E6%84%8F)
 にそって `git completion zsh` の設定をする
