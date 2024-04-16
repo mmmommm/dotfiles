@@ -71,7 +71,6 @@
 [rebase]
 	autostash = true
 [pull]
-	rebase = false
 	ff = false
 [merge]
 	ff = false
