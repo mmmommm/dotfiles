@@ -18,11 +18,12 @@ export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # Go
-export GOROOT_BOOTSTRAP="$HOME/go-darwin-arm64-bootstrap"
-export GOROOT="$HOME/goroot"
 export GOPRIVATE="github.com/cycloud-io,github.com/CyberAgent,github.com/mmmommm"
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$HOME/go/bin:$PATH"
+export GOROOT=/usr/local/go
+# export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/go/bin
+export GOPROXY="https://proxy.golang.org,direct"
+export GOSUMDB="sum.golang.org"
 
 # Node: node は asdf で管理
 
@@ -268,4 +269,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
