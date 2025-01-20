@@ -22,10 +22,15 @@ export GOPRIVATE="github.com/cycloud-io,github.com/CyberAgent,github.com/mmmommm
 export GOROOT=/usr/local/go
 # export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin
+export GO111MODULE=on
+export GOBIN=$(go env GOPATH)/bin
+export PATH=$PATH:$GOBIN
 export GOPROXY="https://proxy.golang.org,direct"
 export GOSUMDB="sum.golang.org"
 
-# Node: node は asdf で管理
+# Node
+export VOLTA_HOME="$HOME/.volta"
+export PATH=$PATH:$VOLTA_HOME/bin
 
 # Deno
 export PATH="$HOME/.deno/bin:$PATH"
@@ -225,6 +230,7 @@ GIT_PS1_SHOWUPSTREAM=auto
 setopt PROMPT_SUBST
 
 # kubectl の補完を効くようにするやつ
+# https://kubernetes.io/docs/reference/kubectl/generated/kubectl_completion/
 source <(kubectl completion zsh)
 
 export PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f\$ '
