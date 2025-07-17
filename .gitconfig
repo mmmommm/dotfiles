@@ -63,7 +63,7 @@
 	stsp = stash pop
 	swc = switch -c
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.config/git/ignore
 [push]
 	default = upstream
 [commit]

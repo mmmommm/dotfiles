@@ -2,6 +2,8 @@
 export LANG=ja_JP.UTF-8
 export USER_NAME=mmomm
 
+export PATH=$PATH:$HOME/.config/cycloud/bin
+
 # Common
 export PATH="/bin:$PATH"
 export PATH="/usr/bin:$PATH"
