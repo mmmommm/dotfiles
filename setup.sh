@@ -6,9 +6,8 @@ do
   [[ "$f" == ".git" ]] && continue
   [[ "$f" == ".DS_Store" ]] && continue
   [[ "$f" == ".brewfile" ]] && continue
-  [[ "$f" = ".git" ]] && continue
-  [[ "$f" = ".gitconfig.local.template" ]] && continue
-  [[ "$f" = ".gitmodules" ]] && continue
+  [[ "$f" == ".gitconfig.local.template" ]] && continue
+  [[ "$f" == ".gitmodules" ]] && continue
 
   echo "$f"
   # 既に貼られている symlink を削除

@@ -1,7 +1,3 @@
-tap "github/gh"
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
 tap "homebrew/services"
 tap "mongodb/brew"
 brew "asdf"
