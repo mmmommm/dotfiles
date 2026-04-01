@@ -5,11 +5,11 @@ DOTFILES_DIR      := $(PWD)
 DOTFILES_FILES    := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 
 .PHONY: setup
-setup: brew install fish
+setup: brew install
 
 .PHONY: brew
 brew:
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	brew bundle
 
 .PHONY: install
