@@ -1,5 +1,13 @@
-.DS_store
+.DS_Store
 .zshrc.local
 .idea
 .gitconfig_local
 .vscode/*
+
+# Swap files
+*.swp
+*.swo
+*~
+
+# Binary files
+docker-buildx
