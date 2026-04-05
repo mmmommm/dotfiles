@@ -2,16 +2,35 @@
 
 my dotfile
 
-# usage
+## Usage
 
 ```terminal
 git clone https://github.com/mmmommm/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-chmod +x setup.sh
-./setup.sh
+make setup
 ```
 
-## git が入っていない場合
+`make setup` を実行すると以下が自動で行われます。
+
+1. Homebrew がなければインストール
+2. `Brewfile` に記載されたパッケージをインストール (`brew bundle`)
+3. dotfiles をホームディレクトリにシンボリックリンクで配置
+
+### Make targets
+
+| コマンド | 説明 |
+|---|---|
+| `make setup` | Homebrew インストール + パッケージインストール + dotfiles 配置 (初回セットアップ用) |
+| `make brew` | Homebrew のインストールと `brew bundle` の実行 |
+| `make install` | dotfiles をホームディレクトリにシンボリックリンクで配置 |
+| `make clean` | ホームディレクトリのシンボリックリンクを削除 |
+| `make prezto` | Prezto (Zsh フレームワーク) のインストール |
+| `make backup` | 現在インストールされている Homebrew パッケージを `Brewfile` にエクスポート |
+| `make list` | シンボリックリンク対象の dotfiles を一覧表示 |
+| `make help` | 利用可能なコマンド一覧を表示 |
+
+## Prerequisites
+
 git コマンドがあるかを確認
 `git --version`
 
@@ -58,11 +77,6 @@ $ ./all.bash
   - clipboard history に cmd + shift + c でホットキー設定
 
 ```terminal
-brew install --cask raycast
-brew install wget
-brew install fzf
-brew install asdf
-
 mkdir ~/.zsh
 cd ~/.zsh
 
