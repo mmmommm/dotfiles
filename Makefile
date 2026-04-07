@@ -5,7 +5,7 @@ DOTFILES_DIR      := $(PWD)
 DOTFILES_FILES    := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 
 .PHONY: setup
-setup: brew install
+setup: brew install git-completion
 
 .PHONY: brew
 brew:
@@ -26,6 +26,17 @@ clean:
 	@echo 'Removing symlinks from home directory.'
 	@$(foreach val, $(DOTFILES_FILES), rm -vf $(HOME)/$(val);)
 
+GIT_COMPLETION_BASE_URL := https://raw.githubusercontent.com/git/git/master/contrib/completion
+
+.PHONY: git-completion
+git-completion:
+	@echo 'Setting up git completion scripts.'
+	@mkdir -p $(HOME)/.zsh
+	@curl -sfL -o $(HOME)/.zsh/git-prompt.sh $(GIT_COMPLETION_BASE_URL)/git-prompt.sh
+	@curl -sfL -o $(HOME)/.zsh/git-completion.bash $(GIT_COMPLETION_BASE_URL)/git-completion.bash
+	@curl -sfL -o $(HOME)/.zsh/_git $(GIT_COMPLETION_BASE_URL)/git-completion.zsh
+	@echo 'Git completion scripts installed to ~/.zsh/'
+
 .PHONY: prezto
 prezto:
 	git clone --recursive https://github.com/sorin-ionescu/prezto.git "$${ZDOTDIR:-$$HOME}/.zprezto"
@@ -42,6 +53,7 @@ help:
 	@echo '  install - Symlink dotfiles to home directory'
 	@echo '  list    - List dotfiles that will be symlinked'
 	@echo '  clean   - Remove symlinks from home directory'
+	@echo '  git-completion - Download git completion/prompt scripts to ~/.zsh/'
 	@echo '  prezto  - Install Prezto (Zsh framework)'
 	@echo '  backup  - Export current Homebrew packages to Brewfile'
 	@echo '  help    - Show this help message'

@@ -15,6 +15,7 @@ make setup
 1. Homebrew がなければインストール
 2. `Brewfile` に記載されたパッケージをインストール (`brew bundle`)
 3. dotfiles をホームディレクトリにシンボリックリンクで配置
+4. git completion / prompt スクリプトを `~/.zsh/` にダウンロード
 
 ### Make targets
 
@@ -26,6 +27,7 @@ make setup
 | `make clean` | ホームディレクトリのシンボリックリンクを削除 |
 | `make prezto` | Prezto (Zsh フレームワーク) のインストール |
 | `make backup` | 現在インストールされている Homebrew パッケージを `Brewfile` にエクスポート |
+| `make git-completion` | git completion / prompt スクリプトを `~/.zsh/` にダウンロード |
 | `make list` | シンボリックリンク対象の dotfiles を一覧表示 |
 | `make help` | 利用可能なコマンド一覧を表示 |
 
@@ -69,18 +71,8 @@ $ ./all.bash
 ```
 
 ## その他使用しているもののインストール
-- [これ](https://qiita.com/mikan3rd/items/d41a8ca26523f950ea9d#pencil2-git-prompt--git-prompt-%E3%81%AE%E7%94%A8%E6%84%8F)
-にそって `git completion zsh` の設定をする
+- git completion / prompt スクリプトは `make setup` (または `make git-completion`) で自動的にインストールされます
 - [これ](https://eng-blog.iij.ad.jp/archives/19131)にそって `kube-ps1` の設定をする
 - [これ](https://www.canva.com/design/DAFGYeHVyzA/9Xgj4-HZAF02UXHm7ol_FQ/view)にそって `raycast` の設定をする
   - my schedule (apple login してカレンダー紐付け)
   - clipboard history に cmd + shift + c でホットキー設定
-
-```terminal
-mkdir ~/.zsh
-cd ~/.zsh
-
-curl -o git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-curl -o git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-curl -o _git https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
-```
