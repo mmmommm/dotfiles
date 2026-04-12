@@ -5,7 +5,6 @@ for f in .??*
 do
   [[ "$f" == ".git" ]] && continue
   [[ "$f" == ".DS_Store" ]] && continue
-  [[ "$f" == ".brewfile" ]] && continue
   [[ "$f" == ".gitconfig.local.template" ]] && continue
   [[ "$f" == ".gitmodules" ]] && continue
 

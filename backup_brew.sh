@@ -1,3 +1,4 @@
-#! /bin/bash
-rm .brewfile
-brew bundle dump --file=.brewfile
+#!/bin/bash
+
+# Export currently installed Homebrew packages to Brewfile
+brew bundle dump --file=Brewfile --force
