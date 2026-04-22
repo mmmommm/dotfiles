@@ -70,6 +70,17 @@ $ git checkout <tag>
 $ ./all.bash
 ```
 
+## Git コミットメッセージテンプレート
+
+`.gitmessage` に [Conventional Commits](https://www.conventionalcommits.org/) ベースのテンプレートが設定されています。
+`git commit` を実行するとエディタにテンプレートが表示されるので、type・scope・subject を埋めてコミットメッセージを作成してください。
+
+```
+<type>(<scope>): <subject>
+```
+
+利用可能な type: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `ci`, `chore`
+
 ## その他使用しているもののインストール
 - git completion / prompt スクリプトは `make setup` (または `make git-completion`) で自動的にインストールされます
 - [これ](https://eng-blog.iij.ad.jp/archives/19131)にそって `kube-ps1` の設定をする
