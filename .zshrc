@@ -152,7 +152,7 @@ is_exists() { type "$1" >/dev/null 2>&1; return $?; }
 is_osx() { [[ $OSTYPE == darwin* ]]; }
 is_screen_running() { [ ! -z "$STY" ]; }
 shell_has_started_interactively() { [ ! -z "$PS1" ]; }
-is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
+is_ssh_running() { [ ! -z "$SSH_CONNECTION" ]; }
 
 # 補完を有効にする
 autoload -Uz compinit
@@ -253,10 +253,6 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# KServe
-export KO_DEFAULTPLATFORMS=linux/arm64
-export KO_DOCKER_REPO="docker.io/$USER_NAME"
-
 # tmux
 # 初回シェル時のみ tmux実行
 if [ $SHLVL = 1 ]; then
@@ -265,14 +261,14 @@ fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/s14958/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$("$HOME/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/s14958/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/s14958/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/s14958/miniconda3/bin:$PATH"
+        export PATH="$HOME/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
