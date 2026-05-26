@@ -25,8 +25,10 @@ export GOROOT=/usr/local/go
 # export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin
 export GO111MODULE=on
-export GOBIN=$(go env GOPATH)/bin
-export PATH=$PATH:$GOBIN
+if command -v go >/dev/null 2>&1; then
+  export GOBIN=$(go env GOPATH)/bin
+  export PATH=$PATH:$GOBIN
+fi
 export GOPROXY="https://proxy.golang.org,direct"
 export GOSUMDB="sum.golang.org"
 
@@ -44,9 +46,11 @@ export PATH="$CARGO_HOME/bin:$PATH"
 # Python Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-export PATH="/.local/bin/ansible:$PATH"
+if command -v pyenv >/dev/null 2>&1; then
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+fi
+export PATH="$HOME/.local/bin/ansible:$PATH"
 
 # Docker
 export COMPOSE_DOCKER_CLI_BUILD=1
@@ -233,7 +237,9 @@ setopt PROMPT_SUBST
 
 # kubectl の補完を効くようにするやつ
 # https://kubernetes.io/docs/reference/kubectl/generated/kubectl_completion/
-source <(kubectl completion zsh)
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion zsh)
+fi
 
 export PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f\$ '
 
@@ -244,7 +250,9 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+if [ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ]; then
+  . /opt/homebrew/opt/asdf/libexec/asdf.sh
+fi
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -265,14 +273,14 @@ fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/s14958/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$("$HOME/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/s14958/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/s14958/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/s14958/miniconda3/bin:$PATH"
+        export PATH="$HOME/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
