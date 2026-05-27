@@ -21,14 +21,17 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Go
 export GOPRIVATE="github.com/cycloud-io,github.com/CyberAgent,github.com/mmmommm"
-export GOROOT=/usr/local/go
-# export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin
 export GO111MODULE=on
-export GOBIN=$(go env GOPATH)/bin
-export PATH=$PATH:$GOBIN
 export GOPROXY="https://proxy.golang.org,direct"
 export GOSUMDB="sum.golang.org"
+if [ -d /usr/local/go ]; then
+  export GOROOT=/usr/local/go
+  export PATH=$PATH:/usr/local/go/bin
+fi
+if command -v go >/dev/null 2>&1; then
+  export GOBIN=$(go env GOPATH)/bin
+  export PATH=$PATH:$GOBIN
+fi
 
 # Node
 export VOLTA_HOME="$HOME/.volta"
@@ -44,9 +47,11 @@ export PATH="$CARGO_HOME/bin:$PATH"
 # Python Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-export PATH="/.local/bin/ansible:$PATH"
+if command -v pyenv >/dev/null 2>&1; then
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+fi
+export PATH="$HOME/.local/bin:$PATH"
 
 # Docker
 export COMPOSE_DOCKER_CLI_BUILD=1
@@ -219,7 +224,7 @@ precmd () { vcs_info }
 plugins=(git zsh-syntax-highlighting zsh-completions)
 
 # git の current branch出すやつ
-source ~/.zsh/git-prompt.sh
+[ -f ~/.zsh/git-prompt.sh ] && source ~/.zsh/git-prompt.sh
 # git-completionの読み込み
 fpath=(~/.zsh $fpath)
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
@@ -233,7 +238,9 @@ setopt PROMPT_SUBST
 
 # kubectl の補完を効くようにするやつ
 # https://kubernetes.io/docs/reference/kubectl/generated/kubectl_completion/
-source <(kubectl completion zsh)
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion zsh)
+fi
 
 export PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f\$ '
 
@@ -244,7 +251,7 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+[ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ] && . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
