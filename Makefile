@@ -3,6 +3,7 @@ DOTFILES_EXCLUDES := .DS_Store .git .gitignore .claude .vscode
 DOTFILES_TARGET   := $(wildcard .??*)
 DOTFILES_DIR      := $(PWD)
 DOTFILES_FILES    := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
+BACKUP_DIR        := $(HOME)/.dotfiles_backup/$(shell date +%Y%m%d_%H%M%S)
 
 .PHONY: setup
 setup: brew install git-completion
@@ -15,7 +16,13 @@ brew:
 .PHONY: install
 install:
 	@echo 'Start deploying dotfiles to home directory.'
-	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
+	@$(foreach val, $(DOTFILES_FILES), \
+		if [ -e $(HOME)/$(val) ] && [ ! -L $(HOME)/$(val) ]; then \
+			mkdir -p $(BACKUP_DIR); \
+			echo 'Backing up $(HOME)/$(val) to $(BACKUP_DIR)/$(val)'; \
+			mv $(HOME)/$(val) $(BACKUP_DIR)/$(val); \
+		fi; \
+		ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 
 .PHONY: list
 list:
@@ -50,7 +57,7 @@ help:
 	@echo 'Available targets:'
 	@echo '  setup   - Install Homebrew, packages, and deploy dotfiles'
 	@echo '  brew    - Install Homebrew and run brew bundle'
-	@echo '  install - Symlink dotfiles to home directory'
+	@echo '  install - Symlink dotfiles to home directory (backs up existing files)'
 	@echo '  list    - List dotfiles that will be symlinked'
 	@echo '  clean   - Remove symlinks from home directory'
 	@echo '  git-completion - Download git completion/prompt scripts to ~/.zsh/'
