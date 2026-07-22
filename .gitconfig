@@ -5,14 +5,6 @@
 [include]
 	path = .gitconfig_local
 [color]
-	status = auto
-	diff = auto
-	branch = auto
-	interactive = auto
-	grep = auto
-
-[color]
-	# Use colors in Git commands that are capable of colored output when outputting to the terminal
 	ui = auto
 [color "branch"]
 	current = yellow reverse
@@ -63,7 +55,7 @@
 	stsp = stash pop
 	swc = switch -c
 [core]
-	excludesfile = ~/.config/git/ignore
+	excludesfile = ~/.gitignore_global
 [push]
 	default = upstream
 [commit]
