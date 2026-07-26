@@ -44,9 +44,10 @@ export PATH="$CARGO_HOME/bin:$PATH"
 # Python Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-export PATH="/.local/bin/ansible:$PATH"
+if command -v pyenv >/dev/null 2>&1; then
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+fi
 
 # Docker
 export COMPOSE_DOCKER_CLI_BUILD=1
@@ -152,7 +153,7 @@ is_exists() { type "$1" >/dev/null 2>&1; return $?; }
 is_osx() { [[ $OSTYPE == darwin* ]]; }
 is_screen_running() { [ ! -z "$STY" ]; }
 shell_has_started_interactively() { [ ! -z "$PS1" ]; }
-is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
+is_ssh_running() { [ ! -z "$SSH_CONNECTION" ]; }
 
 # 補完を有効にする
 autoload -Uz compinit
@@ -233,7 +234,9 @@ setopt PROMPT_SUBST
 
 # kubectl の補完を効くようにするやつ
 # https://kubernetes.io/docs/reference/kubectl/generated/kubectl_completion/
-source <(kubectl completion zsh)
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion zsh)
+fi
 
 export PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f\$ '
 
@@ -244,7 +247,7 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+[ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ] && . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -252,10 +255,6 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-# KServe
-export KO_DEFAULTPLATFORMS=linux/arm64
-export KO_DOCKER_REPO="docker.io/$USER_NAME"
 
 # tmux
 # 初回シェル時のみ tmux実行
@@ -265,14 +264,14 @@ fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/s14958/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$("$HOME/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/s14958/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/s14958/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/s14958/miniconda3/bin:$PATH"
+        export PATH="$HOME/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
