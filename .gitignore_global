@@ -1,2 +1,15 @@
+# macOS
 .DS_Store
-.idea
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# JetBrains IDEs
+.idea/
+
+# Vim
+*.swp
+*.swo
+*~
