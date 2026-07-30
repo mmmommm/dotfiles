@@ -25,8 +25,10 @@ export GOROOT=/usr/local/go
 # export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin
 export GO111MODULE=on
-export GOBIN=$(go env GOPATH)/bin
-export PATH=$PATH:$GOBIN
+if (( $+commands[go] )); then
+  export GOBIN=$(go env GOPATH)/bin
+  export PATH=$PATH:$GOBIN
+fi
 export GOPROXY="https://proxy.golang.org,direct"
 export GOSUMDB="sum.golang.org"
 
@@ -44,8 +46,10 @@ export PATH="$CARGO_HOME/bin:$PATH"
 # Python Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
+if (( $+commands[pyenv] )); then
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+fi
 export PATH="/.local/bin/ansible:$PATH"
 
 # Docker
@@ -152,7 +156,7 @@ is_exists() { type "$1" >/dev/null 2>&1; return $?; }
 is_osx() { [[ $OSTYPE == darwin* ]]; }
 is_screen_running() { [ ! -z "$STY" ]; }
 shell_has_started_interactively() { [ ! -z "$PS1" ]; }
-is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
+is_ssh_running() { [ ! -z "$SSH_CONNECTION" ]; }
 
 # 補完を有効にする
 autoload -Uz compinit
@@ -219,7 +223,7 @@ precmd () { vcs_info }
 plugins=(git zsh-syntax-highlighting zsh-completions)
 
 # git の current branch出すやつ
-source ~/.zsh/git-prompt.sh
+[ -f ~/.zsh/git-prompt.sh ] && source ~/.zsh/git-prompt.sh
 # git-completionの読み込み
 fpath=(~/.zsh $fpath)
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
@@ -233,7 +237,9 @@ setopt PROMPT_SUBST
 
 # kubectl の補完を効くようにするやつ
 # https://kubernetes.io/docs/reference/kubectl/generated/kubectl_completion/
-source <(kubectl completion zsh)
+if (( $+commands[kubectl] )); then
+  source <(kubectl completion zsh)
+fi
 
 export PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f\$ '
 
@@ -244,7 +250,7 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+[ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ] && . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -252,10 +258,6 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-# KServe
-export KO_DEFAULTPLATFORMS=linux/arm64
-export KO_DOCKER_REPO="docker.io/$USER_NAME"
 
 # tmux
 # 初回シェル時のみ tmux実行
