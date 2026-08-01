@@ -50,7 +50,7 @@ if (( $+commands[pyenv] )); then
   eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
 fi
-export PATH="/.local/bin/ansible:$PATH"
+export PATH="$HOME/.local/bin/ansible:$PATH"
 
 # Docker
 export COMPOSE_DOCKER_CLI_BUILD=1
