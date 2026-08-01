@@ -33,13 +33,26 @@ make setup
 
 ## Prerequisites
 
-git コマンドがあるかを確認
-`git --version`
+### Xcode Command Line Tools
 
-brew コマンドがあるかを確認
-`brew list`
+`make setup` の実行には Xcode Command Line Tools が必要です。未インストールの場合は以下を実行してください。
 
-それぞれ[ここ](https://tracpath.com/bootcamp/git-install-to-mac.html)を見れば全部できるはず
+```terminal
+xcode-select --install
+```
+
+### 確認
+
+```terminal
+git --version   # git コマンドがあるか確認
+make --version  # make コマンドがあるか確認
+```
+
+> **Note:** Homebrew は `make setup` の中で自動インストールされるため、事前のインストールは不要です。
+
+### dotfiles のバックアップについて
+
+`make install` は既存のファイル（シンボリックリンクではない実ファイル）を `~/.dotfiles_backup/<timestamp>/` に自動でバックアップしてからシンボリックリンクを作成します。既にシンボリックリンクが張られている場合はバックアップなしで上書きされます。
 
 ## Go のインストール
 [go bootstrap](https://go.dev/doc/install/source)でインストール
